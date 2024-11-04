@@ -1,0 +1,32 @@
+services:
+  catalog.api:
+    image: ${DOCKER_REGISTRY-}catalogapi
+    build:
+      context: .
+      dockerfile: ./Services/Catalog/Catalog.API/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5050:5050"
+    networks:
+      - eshop-network
+
+  catalog.db:
+    container_name: catalog.db
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=CatalogDb
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_catalog:/var/lib/postgresql/data
+    networks:
+      - eshop-network
+
+volumes:
+  postgres_catalog:
+  
+networks:
+  eshop-network:
