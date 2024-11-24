@@ -4,13 +4,13 @@ public sealed class Product
 {
     public Guid Id { get; init; }
 
-    public string Name { get; init; } = default!;
+    public string Name { get; set; } = default!;
 
-    public List<string> Categories { get; init; } = [];
+    public List<string> Categories { get; set; } = [];
 
-    public string Description { get; init; } = default!;
+    public string Description { get; set; } = default!;
 
-    public string ImageFile { get; init; } = default!;
+    public string ImageFile { get; set; } = default!;
 
-    public decimal Price { get; init; }
+    public decimal Price { get; set; }
 }

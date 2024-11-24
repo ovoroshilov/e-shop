@@ -1,5 +1,4 @@
 ﻿using Catalog.API.Responses;
-using Shared.CQRS;
 
 namespace Catalog.API.Products.Commands.CreateProduct;
 

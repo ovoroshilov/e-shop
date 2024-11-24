@@ -8,14 +8,7 @@ internal sealed class CreateProductCommandHandler(IDocumentSession session)
 {
     public async Task<CreateProductResponse> Handle(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        var product = new Product
-        {
-            Name = command.Name,
-            Categories = command.Categories,
-            Description = command.Description,
-            Price = command.Price,
-            ImageFile = command.ImagePath
-        };
+        var product = command.Adapt<Product>();
 
         session.Store(product);
         await session.SaveChangesAsync(cancellationToken);
