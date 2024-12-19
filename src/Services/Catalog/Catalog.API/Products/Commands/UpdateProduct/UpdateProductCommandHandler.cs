@@ -14,7 +14,7 @@ internal sealed class UpdateProductCommandHandler(IDocumentSession session, ILog
 
         if (product is null)
         {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException(command.UpdateProductId);
         }
 
         product.Name = command.Name;

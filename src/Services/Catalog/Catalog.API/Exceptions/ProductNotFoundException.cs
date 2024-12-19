@@ -1,6 +1,5 @@
-﻿namespace Catalog.API.Exceptions;
+﻿using Shared.Exceptions;
 
-public sealed class ProductNotFoundException : Exception
-{
-    public ProductNotFoundException() : base("Product not found!"){ }
-}
+namespace Catalog.API.Exceptions;
+
+public sealed class ProductNotFoundException(Guid id) : NotFoundException("Product", id);

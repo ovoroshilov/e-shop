@@ -1,4 +1,5 @@
-﻿using Catalog.API.Responses;
+﻿using Catalog.API.Models;
+using Catalog.API.Responses;
 
 namespace Catalog.API.Products.Commands.DeleteProduct;
 
@@ -7,9 +8,9 @@ internal sealed class DeleteProductCommandHandler(IDocumentSession session, ILog
 {
     public async Task<DeleteProductResponse> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
     {
-        logger.LogInformation("DeleteProductCommandHandler.Handle called with {@Query}");
+        logger.LogInformation("DeleteProductCommandHandler.Handle called with {@Command}", command);
 
-        session.Delete(command.Id);
+        session.Delete<Product>(command.Id);
         await session.SaveChangesAsync(cancellationToken);
 
         return new DeleteProductResponse(true);

@@ -14,7 +14,7 @@ internal sealed class GetProductByIdQueryHandler(IDocumentSession session, ILogg
 
         if (product is null)
         {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException(query.Id);
         }
 
         return product.Adapt<ProductResponse>();
